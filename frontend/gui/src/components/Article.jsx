@@ -1,6 +1,7 @@
 import React from 'react';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import { Avatar, List, Space } from 'antd';
+import { NavLink } from 'react-router-dom';
 
 
 const IconText = ({ icon, text }) => (
@@ -17,7 +18,7 @@ const Article = props => (
             onChange: (page) => {
                 console.log(page);
             },
-            pageSize: 3,
+            pageSize: 10,
         }}
         dataSource={props.data}
         footer={
@@ -43,10 +44,12 @@ const Article = props => (
             >
                 <List.Item.Meta
                     avatar={<Avatar src={item.avatar} />}
-                    title={<a href={item.href}>{item.title}</a>}
+                    title={<NavLink to={`/${item.id}`}>{item.title}</NavLink>}
                     description={item.description}
                 />
                 {item.content}
+                <br />
+                {item.time_update.slice(0, 10)}
             </List.Item>
         )}
     />
