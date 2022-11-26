@@ -11,47 +11,48 @@ const IconText = ({ icon, text }) => (
     </Space>
 );
 const Article = props => (
-    <List
-        itemLayout="vertical"
-        size="large"
-        pagination={{
-            onChange: (page) => {
-                console.log(page);
-            },
-            pageSize: 10,
-        }}
-        dataSource={props.data}
-        footer={
-            <div>
-                <b>ant design</b> footer part
-            </div>
-        }
-        renderItem={(item) => (
-            <List.Item
-                key={item.title}
-                actions={[
-                    <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
-                    <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
-                    <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
-                ]}
-                extra={
-                    <img
-                        width={272}
-                        alt="logo"
-                        src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+        <List
+            itemLayout="vertical"
+            size="large"
+            pagination={{
+                onChange: (page) => {
+                    console.log(page);
+                },
+                pageSize: 10,
+            }}
+            dataSource={props.data}
+            footer={
+                <div>
+                    <b>ant design</b> footer part
+                </div>
+            }
+            renderItem={(item) => (
+                <List.Item
+                    key={item.title}
+                    actions={[
+                        <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
+                        <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
+                        <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
+                    ]}
+                    extra={
+                        <img
+                            width={272}
+                            alt="logo"
+                            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                        />
+                    }
+                >
+                    <List.Item.Meta
+                        avatar={<Avatar src={item.avatar} />}
+                        title={<NavLink to={`/${item.id}`}>{item.title}</NavLink>}
+                        description={item.description}
                     />
-                }
-            >
-                <List.Item.Meta
-                    avatar={<Avatar src={item.avatar} />}
-                    title={<NavLink to={`/${item.id}`}>{item.title}</NavLink>}
-                    description={item.description}
-                />
-                {item.content}
-                <br />
-                {item.time_update.slice(0, 10)}
-            </List.Item>
-        )}
-    />
+                    {item.content}
+                    <br />
+                    {item.time_update.slice(0, 10)}
+                </List.Item>
+            )}
+        />
+
 );
 export default Article;

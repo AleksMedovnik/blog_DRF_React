@@ -1,6 +1,7 @@
 import Article from "../components/Article";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import CustomForm from "../components/Form";
 
 const data = Array.from({
     length: 23,
@@ -30,7 +31,18 @@ const ArticleList = () => {
         }
     }, [])
 
-    return <Article data={state.articles} />
+    return (
+        <div>
+            <h2>Create an article</h2>
+            <CustomForm requestType='post' />
+            <Article data={state.articles} />
+        </div>
+    )
 }
 
 export default ArticleList
+
+
+
+
+
