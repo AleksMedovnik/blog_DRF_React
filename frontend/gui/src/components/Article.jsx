@@ -45,9 +45,8 @@ const Article = props => (
                     <List.Item.Meta
                         avatar={<Avatar src={item.avatar} />}
                         title={<NavLink to={`/${item.id}`}>{item.title}</NavLink>}
-                        description={item.description}
+                        description={item.content}
                     />
-                    {item.content}
                     <br />
                     {item.time_update.slice(0, 10)}
                 </List.Item>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Card } from "antd";
 import { useParams } from "react-router-dom";
+import CustomForm from "../components/Form";
 
 const ArticleDetail = props => {
     const [state, setState] = useState({
@@ -18,9 +19,13 @@ const ArticleDetail = props => {
     })
 
     return (
-        <Card title={state.article.title}>
-            <p>{state.article.content}</p>
-        </Card>
+        <div>
+            <Card title={state.article.title}>
+                <p>{state.article.content}</p>
+            </Card>
+            <h1>Update this post</h1>
+            <CustomForm requestType='put' articleID={articleID} />
+        </div>
     )
 }
 
