@@ -2,18 +2,8 @@ import Article from "../components/Article";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CustomForm from "../components/Form";
+import FormHOC from "./FormHOC";
 
-const data = Array.from({
-    length: 23,
-}).map((_, i) => ({
-    href: 'https://ant.design',
-    title: `ant design part ${i}`,
-    avatar: 'https://joeschmoe.io/api/v1/random',
-    description:
-        'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-        'We supply a series of design principles, practical patterns and high quality d.',
-}));
 
 const ArticleList = () => {
     const [state, setState] = useState({
@@ -34,7 +24,7 @@ const ArticleList = () => {
     return (
         <div>
             <h2>Create an article</h2>
-            <CustomForm requestType='post' />
+            <FormHOC requestType='post' />
             <Article data={state.articles} />
         </div>
     )

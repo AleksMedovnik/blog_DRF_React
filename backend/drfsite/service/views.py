@@ -9,7 +9,7 @@ from rest_framework.authentication import TokenAuthentication
 class CatViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CatSerializer
-    permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
 
 
 class PostAPIList(generics.ListCreateAPIView):

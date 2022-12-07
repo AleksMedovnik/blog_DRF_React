@@ -3,6 +3,7 @@ import axios from "axios";
 import { Card } from "antd";
 import { useParams } from "react-router-dom";
 import CustomForm from "../components/Form";
+import FormHOC from "./FormHOC";
 
 const ArticleDetail = props => {
     const [state, setState] = useState({
@@ -16,7 +17,7 @@ const ArticleDetail = props => {
             .then(result => setState({
                 article: result.data
             }))
-    })
+    }, [])
 
     return (
         <div>
@@ -24,7 +25,7 @@ const ArticleDetail = props => {
                 <p>{state.article.content}</p>
             </Card>
             <h1>Update this post</h1>
-            <CustomForm requestType='put' articleID={articleID} />
+            <FormHOC requestType='put' articleID={articleID} />
         </div>
     )
 }
