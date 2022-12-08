@@ -44,7 +44,6 @@ const CustomForm = (props) => {
             catSelectedID: value,
         });
     };
-
     return (
         <Form name="basic" onSubmitCapture={event => handleFormSubmit(
             event,
@@ -61,16 +60,10 @@ const CustomForm = (props) => {
                 <Select
                     defaultValue={props.state.catSelected.name}
                     onChange={handleChange}
-                    options={[
-                        {
-                            value: props.state.cats[0].id,
-                            label: props.state.cats[0].name,
-                        },
-                        {
-                            value: props.state.cats[1].id,
-                            label: props.state.cats[1].name,
-                        }
-                    ]} />
+                    options={props.state.cats.map(cat => ({
+                        value: cat.id,
+                        label: cat.name,
+                    }))} />
             </Form.Item>
             <Form.Item>
                 <Button type="primary" htmlType="submit">Submit</Button>
