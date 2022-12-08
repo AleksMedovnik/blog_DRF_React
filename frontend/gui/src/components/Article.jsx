@@ -2,6 +2,7 @@ import React from 'react';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import { Avatar, List, Space } from 'antd';
 import { NavLink } from 'react-router-dom';
+import FormDelete from './FormDelete';
 
 
 const IconText = ({ icon, text }) => (
@@ -49,6 +50,7 @@ const Article = props => (
                     />
                     <br />
                     {item.time_update.slice(0, 10)}
+                    <FormDelete articleID={item.id} />
                 </List.Item>
             )}
         />
