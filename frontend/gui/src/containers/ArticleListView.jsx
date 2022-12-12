@@ -9,21 +9,23 @@ const ArticleList = () => {
         articles: []
     })
 
+    const getPosts = () => {
+        axios.get('http://127.0.0.1:8000/api/v1/postlist/')
+            .then(response => {
+                setState({
+                    articles: response.data
+                });
+            })
+    }
+
     useEffect(() => {
-        if (state.articles.length === 0) {
-            axios.get('http://127.0.0.1:8000/api/v1/postlist/')
-                .then(response => {
-                    setState({
-                        articles: response.data
-                    });
-                })
-        }
+        getPosts()
     }, [])
 
     return (
         <div>
             <h2>Create an article</h2>
-            <FormHOC requestType='post' />
+            <FormHOC requestType='post' getPosts={getPosts} />
             <Article data={state.articles} />
         </div>
     )

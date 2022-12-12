@@ -24,6 +24,7 @@ const CustomForm = (props) => {
 
                 })
                     .then((response) => console.log(response))
+                    .then(() => props.getPosts())
 
 
             case 'put':
@@ -35,6 +36,7 @@ const CustomForm = (props) => {
 
                 })
                     .then((response) => console.log(response))
+                    .then(() => props.getPost())
         }
 
     }

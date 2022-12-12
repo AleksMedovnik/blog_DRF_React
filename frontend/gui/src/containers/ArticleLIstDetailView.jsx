@@ -10,13 +10,17 @@ const ArticleDetail = props => {
         article: {}
     })
 
-    const articleID = useParams().id
-
-    useEffect(() => {
+    const getPost = () => {
         axios.get(`http://127.0.0.1:8000/api/v1/postlist/${articleID}`)
             .then(result => setState({
                 article: result.data
             }))
+    }
+
+    const articleID = useParams().id
+
+    useEffect(() => {
+        getPost()
     }, [])
 
     return (
@@ -25,7 +29,7 @@ const ArticleDetail = props => {
                 <p>{state.article.content}</p>
             </Card>
             <h1>Update this post</h1>
-            <FormHOC requestType='put' articleID={articleID} />
+            <FormHOC requestType='put' articleID={articleID} getPost={getPost} />
         </div>
     )
 }
