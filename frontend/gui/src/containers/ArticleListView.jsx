@@ -26,7 +26,7 @@ const ArticleList = () => {
         <div>
             <h2>Create an article</h2>
             <FormHOC requestType='post' getPosts={getPosts} />
-            <Article data={state.articles} />
+            <Article data={state.articles} getPosts={getPosts} />
         </div>
     )
 }

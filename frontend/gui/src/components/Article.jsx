@@ -50,7 +50,7 @@ const Article = props => (
                     />
                     <br />
                     {item.time_update.slice(0, 10)}
-                    <FormDelete articleID={item.id} />
+                    <FormDelete articleID={item.id} getPosts={props.getPosts} />
                 </List.Item>
             )}
         />
