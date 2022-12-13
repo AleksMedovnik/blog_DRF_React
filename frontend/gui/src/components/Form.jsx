@@ -7,8 +7,12 @@ const { TextArea } = Input;
 const CustomForm = (props) => {
 
     const [titleValue, setTitleValue] = useState('')
+    const [contentValue, setContentValue] = useState('')
     const titleValueChange = (event) => {
         setTitleValue(event.target.value)
+    }
+    const contentValueChange = (event) => {
+        setContentValue(event.target.value)
     };
 
     const [state, setState] = useState({
@@ -31,6 +35,7 @@ const CustomForm = (props) => {
                     .then((response) => console.log(response))
                     .then(() => props.getPosts())
                     .then(() => setTitleValue(''))
+                    .then(() => setContentValue(''))
 
 
             case 'put':
@@ -44,6 +49,7 @@ const CustomForm = (props) => {
                     .then((response) => console.log(response))
                     .then(() => props.getPost())
                     .then(() => setTitleValue(''))
+                    .then(() => setContentValue(''))
         }
 
     }
@@ -68,7 +74,12 @@ const CustomForm = (props) => {
                     onChange={titleValueChange} />
             </Form.Item>
             <Form.Item label="Content">
-                <TextArea name='content' placeholder="Enter some content..." rows={4} />
+                <TextArea
+                    name='content'
+                    placeholder="Enter some content..."
+                    rows={4}
+                    value={contentValue}
+                    onChange={contentValueChange} />
             </Form.Item>
             <Form.Item label="Select a category">
                 <Select
