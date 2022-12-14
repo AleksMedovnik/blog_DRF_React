@@ -4,7 +4,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 const { Header, Content, Sider } = Layout;
 
-const items1 = ['1', '2', '3'].map((key) => ({
+const items1 = ['1', '2'].map((key) => ({
   key,
   label: `nav ${key}`,
 }));
@@ -30,7 +30,7 @@ const CustomLayout = props => {
     <Layout>
       <Header className="header">
         <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']} items={items1} />
       </Header>
       <Layout>
         <Sider width={200} className="site-layout-background">
@@ -56,8 +56,12 @@ const CustomLayout = props => {
             }}
           >
             <Breadcrumb.Item><NavLink to='/'>Home</NavLink></Breadcrumb.Item>
-            <Breadcrumb.Item><NavLink to='/'>List</NavLink></Breadcrumb.Item>
-            <Breadcrumb.Item><NavLink to='/'>App</NavLink></Breadcrumb.Item>
+            {
+              props.isAuthenticated ?
+                <Breadcrumb.Item><NavLink to='/'>Logout</NavLink></Breadcrumb.Item>
+                :
+                <Breadcrumb.Item><NavLink to='/login'>Login</NavLink></Breadcrumb.Item>
+            }
           </Breadcrumb>
           <Content
             className="site-layout-background"
@@ -67,7 +71,7 @@ const CustomLayout = props => {
               minHeight: 280,
             }}
           >
-			{props.children}
+            {props.children}
           </Content>
         </Layout>
       </Layout>
