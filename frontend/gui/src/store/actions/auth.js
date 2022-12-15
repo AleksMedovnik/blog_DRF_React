@@ -44,14 +44,13 @@ export const authLogin = (username, password) => {
 }
 
 
-export const authSignUp = (userName, email, password1, password2) => {
+export const authSignUp = (username, email, password) => {
     return dispatch => {
         dispatch(authStart())
-        axios.post('http://127.0.0.1:8000/auth/token/registration/', {
-            userName,
+        axios.post('http://127.0.0.1:8000/api/v1/auth/users/', {
+            username,
             email,
-            password1,
-            password2
+            password
         })
             .then(response => {
                 const token = response.data.key

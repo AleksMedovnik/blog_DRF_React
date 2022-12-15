@@ -12,8 +12,7 @@ const Signup = props => {
         props.onAuth(
             values.username,
             values.email,
-            values.password,
-            values.confirm
+            values.password
         )
     };
 
@@ -73,7 +72,7 @@ const Signup = props => {
                 <Input.Password />
             </Form.Item>
 
-            <Form.Item
+        {/*     <Form.Item
                 name="confirm"
                 label="Confirm Password"
                 dependencies={['password']}
@@ -94,7 +93,7 @@ const Signup = props => {
                 ]}
             >
                 <Input.Password />
-            </Form.Item>
+            </Form.Item> */}
 
             <Form.Item>
                 <Button type="primary" htmlType="submit">
@@ -114,8 +113,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (username, email, password1, password2) => {
-            dispatch(actions.authSignUp(username, email, password1, password2))
+        onAuth: (username, email, password) => {
+            dispatch(actions.authSignUp(username, email, password))
         }
     }
 }
