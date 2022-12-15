@@ -1,13 +1,15 @@
-import React from 'react';
 import { Button, Form, Input, Spin } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth'
+import { useNavigate } from "react-router-dom";
 
 
 const Login = props => {
+    let navigate = useNavigate();
     const onFinish = (values) => {
-        props.onAuth(values.userName, values.password)
+        props.onAuth(values.username, values.password)
+        navigate('/');
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);

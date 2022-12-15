@@ -1,8 +1,11 @@
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu } from 'antd';
+import { Breadcrumb, Layout, Menu, Button } from 'antd';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../store/actions/auth'
 const { Header, Content, Sider } = Layout;
+
 
 const items1 = ['1', '2'].map((key) => ({
   key,
@@ -58,7 +61,10 @@ const CustomLayout = props => {
             <Breadcrumb.Item><NavLink to='/'>Home</NavLink></Breadcrumb.Item>
             {
               props.isAuthenticated ?
-                <Breadcrumb.Item><NavLink to='/'>Logout</NavLink></Breadcrumb.Item>
+                <Breadcrumb.Item onClick={props.logout}
+                  style={{
+                    cursor: 'pointer',
+                  }}>Logout</Breadcrumb.Item>
                 :
                 <Breadcrumb.Item><NavLink to='/login'>Login</NavLink></Breadcrumb.Item>
             }
@@ -79,5 +85,10 @@ const CustomLayout = props => {
   )
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(actions.logout())
+  }
+}
 
-export default CustomLayout;
+export default connect(null, mapDispatchToProps)(CustomLayout)

@@ -22,15 +22,15 @@ export const checkAuthTimeout = expirationTime => {
     }
 }
 
-export const authLogin = (userName, password) => {
+export const authLogin = (username, password) => {
     return dispatch => {
         dispatch(authStart())
         axios.post('http://127.0.0.1:8000/auth/token/login/', {
-            userName,
+            username,
             password
         })
             .then(response => {
-                const token = response.data.key
+                const token = response.data.auth_token
                 const expirationDate = new Date(new Date().getTime() + 3600 * 1000)
                 localStorage.setItem('token', token)
                 localStorage.setItem('expirationDate', expirationDate)
