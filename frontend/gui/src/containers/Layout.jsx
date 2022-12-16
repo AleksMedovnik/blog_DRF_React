@@ -2,6 +2,7 @@ import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Login from './Login';
 const { Header, Content, Sider } = Layout;
 
 const items1 = ['1', '2', '3'].map((key) => ({
@@ -45,6 +46,7 @@ const CustomLayout = props => {
             items={items2}
           />
         </Sider>
+
         <Layout
           style={{
             padding: '0 24px 24px',
@@ -56,8 +58,7 @@ const CustomLayout = props => {
             }}
           >
             <Breadcrumb.Item><NavLink to='/'>Home</NavLink></Breadcrumb.Item>
-            <Breadcrumb.Item><NavLink to='/'>List</NavLink></Breadcrumb.Item>
-            <Breadcrumb.Item><NavLink to='/'>App</NavLink></Breadcrumb.Item>
+            <Breadcrumb.Item><NavLink to='/login'>Login</NavLink></Breadcrumb.Item>
           </Breadcrumb>
           <Content
             className="site-layout-background"
@@ -67,9 +68,10 @@ const CustomLayout = props => {
               minHeight: 280,
             }}
           >
-			{props.children}
+            {props.children}
           </Content>
         </Layout>
+
       </Layout>
     </Layout>
   )
