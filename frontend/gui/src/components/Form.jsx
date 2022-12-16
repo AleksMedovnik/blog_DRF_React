@@ -26,13 +26,17 @@ const CustomForm = (props) => {
 
         switch (requestType) {
             case 'post':
-                return axios.post('http://127.0.0.1:8000/api/v1/postlist/', {
-                    title: title,
-                    content: content,
-                    cat: state.catSelectedID,
-                    user: 1
-
-                })
+                return axios.post('http://127.0.0.1:8000/api/v1/postlist/',
+                    {
+                        title: title,
+                        content: content,
+                        cat: state.catSelectedID
+                    },
+                    {
+                        headers: {
+                            Authorization: 'Token ' + '169ad514cfe97a09ef0656fd7f2ac713f202996c'
+                        }
+                    })
                     .then((response) => console.log(response))
                     .then(() => props.getPosts())
                     .then(() => setTitleValue(''))
@@ -43,9 +47,12 @@ const CustomForm = (props) => {
                 return axios.put(`http://127.0.0.1:8000/api/v1/postlist/${articleID}/`, {
                     title: title,
                     content: content,
-                    cat: state.catSelectedID,
-                    user: 1
-
+                    cat: state.catSelectedID
+                },
+                {
+                    headers: {
+                        Authorization: 'Token ' + '169ad514cfe97a09ef0656fd7f2ac713f202996c'
+                    }
                 })
                     .then((response) => console.log(response))
                     .then(() => props.getPost())

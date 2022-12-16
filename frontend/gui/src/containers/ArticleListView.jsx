@@ -10,7 +10,11 @@ const ArticleList = () => {
     })
 
     const getPosts = () => {
-        axios.get('http://127.0.0.1:8000/api/v1/postlist/')
+        axios.get('http://127.0.0.1:8000/api/v1/postlist/', {
+            headers: {
+                Authorization: 'Token ' + '169ad514cfe97a09ef0656fd7f2ac713f202996c'
+            }
+        })
             .then(response => {
                 setState({
                     articles: response.data
