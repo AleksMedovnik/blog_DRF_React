@@ -73,7 +73,9 @@ const CustomForm = (props) => {
         });
     };
     return (
-        <Form name="basic" onSubmitCapture={event => handleFormSubmit(
+        <div>
+            <h2>Create an article</h2>
+            <Form name="basic" onSubmitCapture={event => handleFormSubmit(
             event,
             props.requestType,
             props.articleID,
@@ -107,6 +109,7 @@ const CustomForm = (props) => {
                 <Button type="primary" htmlType="submit">Submit</Button>
             </Form.Item>
         </Form>
+        </div>
     );
 };
 export default CustomForm;
