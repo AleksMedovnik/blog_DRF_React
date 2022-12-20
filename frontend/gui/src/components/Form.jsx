@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from 'axios';
 import { Button, Form, Input, Select } from 'antd';
+import * as actions from '../store/actions/auth'
+
 const { TextArea } = Input;
 
 
@@ -20,6 +22,9 @@ const CustomForm = (props) => {
         catSelectedID: props.state.catSelected.id,
     })
 
+    const token = actions.getToken()
+    if (!token) return <div>Register or log in</div>
+
     const handleFormSubmit = (event, requestType, articleID) => {
         const title = event.target.elements.title.value
         const content = event.target.elements.content.value
@@ -34,7 +39,7 @@ const CustomForm = (props) => {
                     },
                     {
                         headers: {
-                            Authorization: 'Token ' + '169ad514cfe97a09ef0656fd7f2ac713f202996c'
+                            Authorization: 'Token ' + token
                         }
                     })
                     .then((response) => console.log(response))
@@ -49,11 +54,11 @@ const CustomForm = (props) => {
                     content: content,
                     cat: state.catSelectedID
                 },
-                {
-                    headers: {
-                        Authorization: 'Token ' + '169ad514cfe97a09ef0656fd7f2ac713f202996c'
-                    }
-                })
+                    {
+                        headers: {
+                            Authorization: 'Token ' + token
+                        }
+                    })
                     .then((response) => console.log(response))
                     .then(() => props.getPost())
                     .then(() => setTitleValue(''))

@@ -8,9 +8,8 @@ import { Provider } from 'react-redux';
 import reducer from './store/reducers/auth';
 import { applyMiddleware, compose, createStore } from 'redux';
 
-const composeEnhances = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(reducer, composeEnhances(applyMiddleware(thunk)))
+const store = createStore(reducer, compose(applyMiddleware(thunk)))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

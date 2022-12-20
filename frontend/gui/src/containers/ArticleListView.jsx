@@ -2,6 +2,7 @@ import Article from "../components/Article";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import FormHOC from "./FormHOC";
+import * as actions from '../store/actions/auth'
 
 
 const ArticleList = () => {
@@ -10,9 +11,11 @@ const ArticleList = () => {
     })
 
     const getPosts = () => {
+        const token = actions.getToken()
+        if (!token) return
         axios.get('http://127.0.0.1:8000/api/v1/postlist/', {
             headers: {
-                Authorization: 'Token ' + '169ad514cfe97a09ef0656fd7f2ac713f202996c'
+                Authorization: 'Token ' + token
             }
         })
             .then(response => {
@@ -23,6 +26,7 @@ const ArticleList = () => {
     }
 
     useEffect(() => {
+
         getPosts()
     }, [])
 

@@ -7,7 +7,7 @@ export const authSuccess = token => ({ type: actionTypes.AUTH_SUCCESS, token })
 export const authFail = error => ({ type: actionTypes.AUTH_FAIL, error })
 
 export const logout = () => {
-    localStorage.removeItem('user')
+    localStorage.removeItem('token')
     localStorage.removeItem('expirationDate')
     return {
         type: actionTypes.AUTH_LOGOUT
@@ -81,4 +81,8 @@ export const authCheckState = () => {
             }
         }
     }
+}
+
+export const getToken = () => {
+    return localStorage.getItem('token')
 }

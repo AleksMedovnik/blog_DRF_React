@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Card } from "antd";
 import { useParams } from "react-router-dom";
-import CustomForm from "../components/Form";
 import FormHOC from "./FormHOC";
+import * as actions from '../store/actions/auth'
+
 
 const ArticleDetail = props => {
     const [state, setState] = useState({
@@ -11,7 +12,13 @@ const ArticleDetail = props => {
     })
 
     const getPost = () => {
-        axios.get(`http://127.0.0.1:8000/api/v1/postlist/${articleID}`)
+        const token = actions.getToken()
+        if (!token) return
+        axios.get(`http://127.0.0.1:8000/api/v1/postlist/${articleID}`, {
+            headers: {
+                Authorization: 'Token ' + token
+            }
+        })
             .then(result => setState({
                 article: result.data
             }))
