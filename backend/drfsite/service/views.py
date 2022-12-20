@@ -27,4 +27,4 @@ class PostAPIUpdate(generics.RetrieveUpdateAPIView):
 class PostAPIDestroy(generics.RetrieveDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsOwnerOrReadOnly,)
